@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Threads - Modern Clothing Store</title>
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons for UI elements -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Custom styles to enhance the design */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* bg-gray-900 */
+            color: #d1d5db; /* text-gray-300 */
+        }
+        /* Custom scrollbar for a more modern look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1f2937; /* bg-gray-800 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4b5563; /* bg-gray-600 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6b7280; /* bg-gray-500 */
+        }
+        /* Style for the select dropdown arrows */
+        select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="app" class="min-h-screen">
+        <!-- Header Section -->
+        <header class="bg-gray-800/80 backdrop-blur-sm sticky top-0 z-40 shadow-md">
+            <div class="container mx-auto px-4">
+                <div class="flex items-center justify-between h-16">
+                    <!-- Logo -->
+                    <a href="#" class="text-2xl font-bold text-white tracking-wider">
+                        UrbanThreads
+                    </a>
+
+                    <!-- Desktop Search Bar -->
+                    <div class="hidden lg:flex flex-1 max-w-xl mx-8">
+                        <div class="relative w-full">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <i data-lucide="search" class="w-5 h-5 text-gray-400"></i>
+                            </div>
+                            <input type="text" placeholder="Ce anume cauți?" class="w-full bg-gray-700 border border-gray-600 text-white placeholder-gray-400 rounded-lg py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition">
+                        </div>
+                    </div>
+
+                    <!-- Desktop Navigation -->
+                    <nav class="hidden lg:flex items-center space-x-6">
+                        <a href="#" class="flex items-center space-x-2 text-gray-300 hover:text-white transition">
+                            <i data-lucide="message-square" class="w-5 h-5"></i>
+                            <span>Chat</span>
+                        </a>
+                        <a href="#" class="flex items-center space-x-2 text-gray-300 hover:text-white transition">
+                            <i data-lucide="user" class="w-5 h-5"></i>
+                            <span>Contul tău</span>
+                        </a>
+                        <a href="#" class="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 flex items-center space-x-2">
+                            <i data-lucide="plus-circle" class="w-5 h-5"></i>
+                            <span>Adaugă anunț nou</span>
+                        </a>
+                    </nav>
+
+                    <!-- Mobile Menu Button -->
+                    <div class="lg:hidden">
+                        <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none">
+                            <i data-lucide="menu" class="w-6 h-6"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden lg:hidden px-4 pt-2 pb-4 space-y-4">
+                 <div class="relative w-full mb-4">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <i data-lucide="search" class="w-5 h-5 text-gray-400"></i>
+                    </div>
+                    <input type="text" placeholder="Ce anume cauți?" class="w-full bg-gray-700 border border-gray-600 text-white placeholder-gray-400 rounded-lg py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition">
+                </div>
+                <nav class="flex flex-col space-y-3">
+                    <a href="#" class="flex items-center space-x-2 text-gray-300 hover:text-white transition bg-gray-700 p-2 rounded-lg">
+                        <i data-lucide="message-square" class="w-5 h-5"></i>
+                        <span>Chat</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-2 text-gray-300 hover:text-white transition bg-gray-700 p-2 rounded-lg">
+                        <i data-lucide="user" class="w-5 h-5"></i>
+                        <span>Contul tău</span>
+                    </a>
+                    <a href="#" class="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 flex items-center justify-center space-x-2">
+                        <i data-lucide="plus-circle" class="w-5 h-5"></i>
+                        <span>Adaugă anunț nou</span>
+                    </a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="container mx-auto px-4 py-8">
+            <div class="lg:grid lg:grid-cols-4 lg:gap-8">
+                
+                <!-- Filter Sidebar -->
+                <aside id="filter-sidebar" class="hidden lg:block lg:col-span-1 bg-gray-800 p-6 rounded-lg self-start">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-semibold text-white">Filtre</h2>
+                         <button id="close-filter-button" class="lg:hidden text-gray-400 hover:text-white">
+                            <i data-lucide="x" class="w-6 h-6"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <!-- Category Filter -->
+                        <div>
+                            <label for="category" class="block text-sm font-medium text-gray-400 mb-1">Categorie</label>
+                            <select id="category" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-500">
+                                <option>Haine damă</option>
+                                <option>Haine bărbați</option>
+                                <option>Haine copii</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Subcategory Filter -->
+                        <div>
+                            <label for="subcategory" class="block text-sm font-medium text-gray-400 mb-1">Subcategorie</label>
+                            <select id="subcategory" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-500">
+                                <option>Vezi toate</option>
+                                <option>Rochii</option>
+                                <option>Bluze</option>
+                                <option>Pantaloni</option>
+                                <option>Geci</option>
+                            </select>
+                        </div>
+
+                        <!-- Price Filter -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1">Preț</label>
+                            <div class="flex items-center space-x-2">
+                                <input type="number" placeholder="De la" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-500">
+                                <span class="text-gray-400">-</span>
+                                <input type="number" placeholder="Până la" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-500">
+                            </div>
+                        </div>
+
+                        <!-- Size Filter -->
+                        <div>
+                            <label for="size" class="block text-sm font-medium text-gray-400 mb-1">Mărime</label>
+                            <select id="size" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-500">
+                                <option>Vezi toate</option>
+                                <option>XS</option>
+                                <option>S</option>
+                                <option>M</option>
+                                <option>L</option>
+                                <option>XL</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Color Filter -->
+                        <div>
+                            <label for="color" class="block text-sm font-medium text-gray-400 mb-1">Culoare</label>
+                            <select id="color" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-500">
+                                <option>Vezi toate</option>
+                                <option>Negru</option>
+                                <option>Alb</option>
+                                <option>Roșu</option>
+                                <option>Albastru</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Brand Filter -->
+                        <div>
+                            <label for="brand" class="block text-sm font-medium text-gray-400 mb-1">Marcă</label>
+                            <select id="brand" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-500">
+                                <option>Vezi toate</option>
+                                <option>Tommy Hilfiger</option>
+                                <option>Zara</option>
+                                <option>H&M</option>
+                                <option>Nike</option>
+                            </select>
+                        </div>
+                        
+                        <button class="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-2.5 px-4 rounded-lg transition duration-300 flex items-center justify-center space-x-2">
+                            <i data-lucide="filter" class="w-5 h-5"></i>
+                            <span>Aplică Filtre</span>
+                        </button>
+                    </div>
+                </aside>
+
+                <!-- Product Listings -->
+                <main class="lg:col-span-3">
+                    <div class="flex flex-col sm:flex-row justify-between items-center mb-6">
+                        <div class="text-lg text-white mb-4 sm:mb-0">
+                            Am găsit <span class="font-bold text-teal-400">1.000+</span> rezultate
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <!-- Mobile Filter Button -->
+                            <button id="mobile-filter-button" class="lg:hidden bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg flex items-center space-x-2">
+                                <i data-lucide="sliders-horizontal" class="w-5 h-5"></i>
+                                <span>Filtre</span>
+                            </button>
+                            <select class="bg-gray-700 border border-gray-600 text-white rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-500">
+                                <option>Sortează după: Relevanță</option>
+                                <option>Sortează după: Preț crescător</option>
+                                <option>Sortează după: Preț descrescător</option>
+                                <option>Sortează după: Cele mai noi</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Product Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                        <!-- Product Card 1 -->
+                        <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-teal-500/20 transition-shadow duration-300 group">
+                            <div class="relative">
+                                <img src="https://placehold.co/600x800/1f2937/ffffff?text=Rochită" alt="Product Image" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-300">
+                                <button class="absolute top-3 right-3 bg-gray-900/50 p-2 rounded-full text-gray-300 hover:text-red-500 transition-colors">
+                                    <i data-lucide="heart" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-white truncate">Rochită calitate Tommy HILFIGER I</h3>
+                                <p class="text-sm text-gray-400 mt-1">Nou, cu etichetă</p>
+                                <p class="text-sm text-gray-400">Panciu • Actualizat la 15:14</p>
+                                <div class="mt-4 flex justify-between items-center">
+                                    <p class="text-xl font-bold text-teal-400">200 lei</p>
+                                    <p class="text-sm text-gray-500">Preț fix</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product Card 2 -->
+                        <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-teal-500/20 transition-shadow duration-300 group">
+                            <div class="relative">
+                                <img src="https://placehold.co/600x800/374151/ffffff?text=Geacă" alt="Product Image" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-300">
+                                <button class="absolute top-3 right-3 bg-gray-900/50 p-2 rounded-full text-gray-300 hover:text-red-500 transition-colors">
+                                    <i data-lucide="heart" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-white truncate">Geacă de piele naturală</h3>
+                                <p class="text-sm text-gray-400 mt-1">Purtată o singură dată</p>
+                                <p class="text-sm text-gray-400">București, Sectorul 3 • 01 Iun 2025</p>
+                                <div class="mt-4 flex justify-between items-center">
+                                    <p class="text-xl font-bold text-teal-400">400 lei</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 3 -->
+                        <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-teal-500/20 transition-shadow duration-300 group">
+                            <div class="relative">
+                                <img src="https://placehold.co/600x800/4b5563/ffffff?text=OFERTĂ" alt="Product Image" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-300">
+                                <button class="absolute top-3 right-3 bg-gray-900/50 p-2 rounded-full text-gray-300 hover:text-red-500 transition-colors">
+                                    <i data-lucide="heart" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-white truncate">OFERTĂ vand 5 rochii elegante</h3>
+                                <p class="text-sm text-gray-400 mt-1">Purtată o singură dată</p>
+                                <p class="text-sm text-gray-400">Ploiești • Actualizat la 14:00</p>
+                                <div class="mt-4 flex justify-between items-center">
+                                    <p class="text-xl font-bold text-teal-400">250 lei</p>
+                                    <p class="text-sm text-gray-500">Preț negociabil</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Add more product cards as needed -->
+                        <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-teal-500/20 transition-shadow duration-300 group">
+                            <div class="relative">
+                                <img src="https://placehold.co/600x800/111827/ffffff?text=Bluză" alt="Product Image" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-300">
+                                <button class="absolute top-3 right-3 bg-gray-900/50 p-2 rounded-full text-gray-300 hover:text-red-500 transition-colors">
+                                    <i data-lucide="heart" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-white truncate">Bluză elegantă de mătase</h3>
+                                <p class="text-sm text-gray-400 mt-1">Stare impecabilă</p>
+                                <p class="text-sm text-gray-400">Cluj-Napoca • 02 Iul 2025</p>
+                                <div class="mt-4 flex justify-between items-center">
+                                    <p class="text-xl font-bold text-teal-400">150 lei</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-teal-500/20 transition-shadow duration-300 group">
+                            <div class="relative">
+                                <img src="https://placehold.co/600x800/6b7280/ffffff?text=Pantaloni" alt="Product Image" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-300">
+                                <button class="absolute top-3 right-3 bg-gray-900/50 p-2 rounded-full text-gray-300 hover:text-red-500 transition-colors">
+                                    <i data-lucide="heart" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-white truncate">Pantaloni Cargo Bej</h3>
+                                <p class="text-sm text-gray-400 mt-1">Nou, fără etichetă</p>
+                                <p class="text-sm text-gray-400">Timișoara • 03 Iul 2025</p>
+                                <div class="mt-4 flex justify-between items-center">
+                                    <p class="text-xl font-bold text-teal-400">180 lei</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-teal-500/20 transition-shadow duration-300 group">
+                            <div class="relative">
+                                <img src="https://placehold.co/600x800/1f2937/ffffff?text=Adidași" alt="Product Image" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-300">
+                                <button class="absolute top-3 right-3 bg-gray-900/50 p-2 rounded-full text-gray-300 hover:text-red-500 transition-colors">
+                                    <i data-lucide="heart" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-white truncate">Adidași Nike Air Force 1</h3>
+                                <p class="text-sm text-gray-400 mt-1">Purtat de câteva ori</p>
+                                <p class="text-sm text-gray-400">Iași • 04 Iul 2025</p>
+                                <div class="mt-4 flex justify-between items-center">
+                                    <p class="text-xl font-bold text-teal-400">350 lei</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // --- Mobile Menu Functionality ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // --- Mobile Filter Sidebar Functionality ---
+        const mobileFilterButton = document.getElementById('mobile-filter-button');
+        const filterSidebar = document.getElementById('filter-sidebar');
+        const closeFilterButton = document.getElementById('close-filter-button');
+
+        // Function to open the filter sidebar
+        mobileFilterButton.addEventListener('click', () => {
+            filterSidebar.classList.remove('hidden');
+            filterSidebar.classList.add('block');
+        });
+
+        // Function to close the filter sidebar
+        closeFilterButton.addEventListener('click', () => {
+            filterSidebar.classList.add('hidden');
+            filterSidebar.classList.remove('block');
+        });
+
+    </script>
+</body>
+</html>
